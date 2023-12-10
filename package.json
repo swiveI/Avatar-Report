@@ -1,0 +1,17 @@
+{
+  "name": "com.lolipolicedepartment.avatar-report",
+  "version": "0.8.0",
+  "displayName": "Avatar Report",
+  "description": "A tool that displays information about VRChat's avatar performance ranking system.",
+  "unity": "2019.4",
+  "unityRelease": "31f1",
+  "keywords": [
+    "VRChat",
+    "LPD"
+  ],
+  "author": {
+    "name": "Loli Police Department",
+    "url": "https://discord.gg/lpd"
+  },
+  "type": "tool"
+}
