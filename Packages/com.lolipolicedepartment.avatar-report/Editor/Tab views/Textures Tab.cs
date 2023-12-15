@@ -297,6 +297,7 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
                         {
                             if (info.texture == texture)
                             {
+                                if (info.materials.Contains(material)) break;
                                 info.materials.Add(material);
                                 break;
                             }
