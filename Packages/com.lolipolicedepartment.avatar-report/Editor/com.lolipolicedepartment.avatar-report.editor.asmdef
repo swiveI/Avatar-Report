@@ -2,7 +2,7 @@
     "name": "com.lolipolicedepartment.avatar-report.editor",
     "references": [],
     "includePlatforms": [
-        "Editor",
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
