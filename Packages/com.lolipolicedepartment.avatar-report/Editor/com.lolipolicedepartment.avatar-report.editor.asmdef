@@ -2,10 +2,7 @@
     "name": "com.lolipolicedepartment.avatar-report.editor",
     "references": [],
     "includePlatforms": [
-        "Android",
         "Editor",
-        "WindowsStandalone32",
-        "WindowsStandalone64"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
