@@ -13,7 +13,7 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
     {
         public class uxmlFactory : UxmlFactory<DynamicsGraphview, UxmlTraits> { }
         
-        public const string stylesPath = "Assets/LPD/AvatarReport/Editor/Graph View/ContactNodeStyles.uss";
+        public const string stylesPath = "Packages/com.lolipolicedepartment.avatar-report/Editor/Graph View/ContactNodeStyles.uss";
         private List<ContactNode> senderNodes = new List<ContactNode>();
         private List<ContactNode> receiverNodes = new List<ContactNode>();
         public DynamicsGraphview()
