@@ -31,9 +31,9 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
         
         public override void OnTabOpen()
         {
-            LeafBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/LPD/AvatarReport/Resources/Leaf icon.png", typeof(Texture2D));
-            PhysBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/LPD/AvatarReport/Resources/Phys icon.png", typeof(Texture2D));
-            WeightBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/LPD/AvatarReport/Resources/Weight icon.png", typeof(Texture2D));
+            LeafBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.lolipolicedepartment.avatar-report/Resources/Leaf icon.png", typeof(Texture2D));
+            PhysBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.lolipolicedepartment.avatar-report/Resources/Phys icon.png", typeof(Texture2D));
+            WeightBone = (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.lolipolicedepartment.avatar-report/Resources/Weight icon.png", typeof(Texture2D));
             
             SetupTreeViewItems();
             //ProcessAvatarBones();
