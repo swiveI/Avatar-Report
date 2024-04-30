@@ -340,7 +340,7 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.MaterialCount));
-                           GUILayout.Label(new GUIContent("Material slots: " + SelectedAvatarStats.skinnedMeshCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Material slots: " + SelectedAvatarStats.materialCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
