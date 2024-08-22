@@ -344,18 +344,6 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
                        }
                        using (new GUILayout.HorizontalScope())
                        {
-                           performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.DynamicBoneCollisionCheckCount));
-                           int dynamicBoneCollisionChecks = SelectedAvatarStats.dynamicBone?.collisionCheckCount ?? 0;
-                           GUILayout.Label(new GUIContent("D. Bone collision checks: " + dynamicBoneCollisionChecks  + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
-                       }
-                       using (new GUILayout.HorizontalScope())
-                       {
-                           performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.DynamicBoneSimulatedBoneCount));
-                           int dynamicBoneSimulatedBones = SelectedAvatarStats.dynamicBone?.transformCount ?? 0;
-                           GUILayout.Label(new GUIContent("D. Bone simulated bones: " + dynamicBoneSimulatedBones + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
-                       }
-                       using (new GUILayout.HorizontalScope())
-                       {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysBoneTransformCount));
                            int physBoneTransforms = SelectedAvatarStats.physBone?.transformCount ?? 0;
                            GUILayout.Label(new GUIContent("PhysBone transforms: " + physBoneTransforms + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
@@ -427,18 +415,6 @@ namespace LoliPoliceDepartment.Utilities.AvatarReport
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.MeshCount));
                            GUILayout.Label(new GUIContent("Basic meshes: " + SelectedAvatarStats.meshCount + "/24", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
-                       }
-                       using (new GUILayout.HorizontalScope())
-                       {
-                           performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.DynamicBoneComponentCount));
-                           int dynamicBoneComponentCount = SelectedAvatarStats.dynamicBone?.componentCount ?? 0;
-                           GUILayout.Label(new GUIContent("D. Bone Components: " + dynamicBoneComponentCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
-                       }
-                       using (new GUILayout.HorizontalScope())
-                       {
-                           performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.DynamicBoneColliderCount));
-                           int dynamicBoneColliderCount = SelectedAvatarStats.dynamicBone?.colliderCount ?? 0;
-                           GUILayout.Label(new GUIContent("D. Bone colliders: " + dynamicBoneColliderCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
