@@ -9,7 +9,7 @@ using VRC.SDKBase.Validation.Performance;
 using VRC.SDKBase.Validation.Performance.Stats;
 using Debug = UnityEngine.Debug;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class AvatarBuildReportUtility : EditorWindow
     {

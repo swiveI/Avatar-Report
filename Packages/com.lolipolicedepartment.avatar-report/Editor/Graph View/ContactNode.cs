@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class ContactNode : Node
     {

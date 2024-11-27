@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using LightType = UnityEngine.LightType;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class LightsTreeItem : TreeViewItem
     {

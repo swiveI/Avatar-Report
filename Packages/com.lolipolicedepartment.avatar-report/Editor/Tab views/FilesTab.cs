@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class FilesTab : AvatarReportTab
     {

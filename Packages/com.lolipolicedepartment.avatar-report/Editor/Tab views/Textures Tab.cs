@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     //looked at a lot of Thry's code for this one
     public class TexturesTab : AvatarReportTab

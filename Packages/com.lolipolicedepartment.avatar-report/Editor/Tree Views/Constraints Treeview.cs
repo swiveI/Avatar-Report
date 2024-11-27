@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.Animations;
 using Debug = System.Diagnostics.Debug;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public enum ConstraintType
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using LoliPoliceDepartment.Utilities.AvatarReport;
+using LocalPoliceDepartment.Utilities.AvatarReport;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace  LoliPoliceDepartment.Utilities
+namespace  LocalPoliceDepartment.Utilities
 {
     public class ParticleTreeItem : TreeViewItem
     {

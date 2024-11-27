@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     internal class FileTreeItem : TreeViewItem
     {
