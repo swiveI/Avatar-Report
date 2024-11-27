@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using VRC.SDK3.Dynamics.PhysBone.Components;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public struct BoneInfo
     {

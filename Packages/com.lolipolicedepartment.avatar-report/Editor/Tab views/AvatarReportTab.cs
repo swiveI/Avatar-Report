@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public abstract class AvatarReportTab //: EditorWindow
     {

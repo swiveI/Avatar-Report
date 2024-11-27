@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 using VRC.Dynamics;
 using Button = UnityEngine.UIElements.Button;
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class DynamicsGraphview : GraphView
     {

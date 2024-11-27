@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace LoliPoliceDepartment.Utilities.AvatarReport
+namespace LocalPoliceDepartment.Utilities.AvatarReport
 {
     public class TestAvRTab : AvatarReportTab
     {
