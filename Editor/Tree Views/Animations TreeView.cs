@@ -106,7 +106,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             {
                 Rect rect = args.GetCellRect(0);
                 rect.xMin += 32f;
-                rect.width = Screen.width - 32f;
+                rect.width = AvatarBuildReportUtility.ScaledWidth - 32f;
                 GUI.DrawTexture(new Rect(rect.x, rect.y, 20, 20), AssetPreview.GetMiniTypeThumbnail(typeof(AnimationClip)), ScaleMode.ScaleToFit);
                 rect.x += 20;
                 rect.width -= 20;

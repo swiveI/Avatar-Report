@@ -294,18 +294,18 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             {
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("PB components:  " + PhysBones.Count, "The number of physbone components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("PB Affected Transforms:  " + physboneTransforms, "The number of physbone components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("PB components:  " + PhysBones.Count, "The number of physbone components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("PB Affected Transforms:  " + physboneTransforms, "The number of physbone components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("PB Collider components:  " + PhysBoneColliders.Count, "The number of physbone collider components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("PB Collision Check Count:  " + physboneCollisions, "The number of physbone collider components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("PB Collider components:  " + PhysBoneColliders.Count, "The number of physbone collider components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("PB Collision Check Count:  " + physboneCollisions, "The number of physbone collider components on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("Total Contact receivers:  " + ContactReceivers.Count, "The number of contact receivers on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("Total Contact senders:  " + ContactSenders.Count, "The number of contact senders on this avatar"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("Total Contact receivers:  " + ContactReceivers.Count, "The number of contact receivers on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("Total Contact senders:  " + ContactSenders.Count, "The number of contact senders on this avatar"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
             }
 
@@ -331,7 +331,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             
             //draw the treeview
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (295 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (295 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             contactTreeHeader.ResizeToFit();
             contactTreeView.OnGUI(rect);
@@ -345,7 +345,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
         {
             //draw the treeview
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (255 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (255 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             
             rect.height /= 2;

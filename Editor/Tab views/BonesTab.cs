@@ -106,7 +106,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             GUILayout.Space(5f);
 
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (210 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (210 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             BoneHeader.ResizeToFit();
             BoneTree.OnGUI(rect);

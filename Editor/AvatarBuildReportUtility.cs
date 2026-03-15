@@ -16,6 +16,10 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
         public static PipelineManager SelectedAvatar = null;
         public static AvatarPerformanceStats SelectedAvatarStats;
 
+        // DPI-aware screen dimensions (logical points instead of physical pixels)
+        public static float ScaledWidth => Screen.width / EditorGUIUtility.pixelsPerPoint;
+        public static float ScaledHeight => Screen.height / EditorGUIUtility.pixelsPerPoint;
+
         bool avatarFoldout = false;
         bool autoRefresh = false;
         bool statsFoldout = false;
@@ -159,10 +163,10 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
         private void OnGUI()
         {
             GUI.contentColor = Color.white;
-            float drawarea = Screen.width / 4;
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, drawarea), headerTexture, ScaleMode.ScaleToFit);
+            float drawarea = ScaledWidth / 4;
+            GUI.DrawTexture(new Rect(0, 0, ScaledWidth, drawarea), headerTexture, ScaleMode.ScaleToFit);
 
-            GUILayout.BeginArea(new Rect(0, drawarea, Screen.width, Screen.height));
+            GUILayout.BeginArea(new Rect(0, drawarea, ScaledWidth, ScaledHeight));
 
             if (avatarsInScene.Length == 0)
             {
@@ -189,7 +193,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                 using (new GUILayout.HorizontalScope())
                 {
                     GUI.backgroundColor = new Color(.2f, .6f, .2f, 1f);
-                    if (GUILayout.Button(new GUIContent("Select Avatar", "Click to Show/Hide Avatars \nNote: Disabled avatars are hidden"), AvatarSelectorButtonStyle,  GUILayout.Width(Screen.width /2)))
+                    if (GUILayout.Button(new GUIContent("Select Avatar", "Click to Show/Hide Avatars \nNote: Disabled avatars are hidden"), AvatarSelectorButtonStyle,  GUILayout.Width(ScaledWidth /2)))
                     {
                         avatarFoldout = !avatarFoldout;
                     } 
@@ -211,12 +215,12 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
 
                 if (avatarFoldout)
                 {
-                    using (var scrollview = new GUILayout.ScrollViewScope(avatarScroll, GUILayout.Height(Screen.width/2)))
+                    using (var scrollview = new GUILayout.ScrollViewScope(avatarScroll, GUILayout.Height(ScaledWidth/2)))
                     {
                         avatarScroll = scrollview.scrollPosition;
                         GUILayout.BeginHorizontal();
                         int rows = 1;
-                        int buttonSize = (Screen.width / 4) - 11;
+                        int buttonSize = (int)(ScaledWidth / 4) - 11;
 
                         for (int i = 0; i < avatarsInScene.Length; i++)
                         {
@@ -231,7 +235,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                             string AvatarName = avatarsInScene[i].gameObject.name;
 
                             //label
-                            GUILayout.Label(AvatarName, EditorStyles.boldLabel, GUILayout.Width((Screen.width / 4) - 11f));
+                            GUILayout.Label(AvatarName, EditorStyles.boldLabel, GUILayout.Width((ScaledWidth / 4) - 11f));
 
                             GUILayout.EndVertical();
 
@@ -300,7 +304,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             tabNumber = GUILayout.SelectionGrid(tabNumber, tabNames, 4, tabButtonStyle);
             GUI.backgroundColor = Color.white;
             
-            float offset = avatarFoldout ? (Screen.width / 2) + 23 : 23;
+            float offset = avatarFoldout ? (ScaledWidth / 2) + 23 : 23;
             if (cachedTabNumber != tabNumber) tabs[tabNumber].OnAvatarChanged();
             if (statsFoldout) DrawStats(offset);
             else tabs[tabNumber].OnTabGui(offset);
@@ -311,7 +315,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             Texture2D performanceIcon;
             
             GUILayout.Space(5);
-            using (var scrollView = new GUILayout.ScrollViewScope(statsScroll, GUILayout.Height(Screen.height - (Screen.width / 4 + baseOffset + 178))))
+            using (var scrollView = new GUILayout.ScrollViewScope(statsScroll, GUILayout.Height(ScaledHeight - (ScaledWidth / 4 + baseOffset + 178))))
             {
                 statsScroll = scrollView.scrollPosition;
                 EditorGUIUtility.SetIconSize(new Vector2(20, 20));
@@ -325,74 +329,74 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.DownloadSize));
                            int downloadSize = SelectedAvatarStats.downloadSizeBytes ?? 0;
-                           GUILayout.Label(new GUIContent("Download size: " + FormatSize(downloadSize), performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Download size: " + FormatSize(downloadSize), performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PolyCount));
-                           GUILayout.Label(new GUIContent("Polygons: " + SelectedAvatarStats.polyCount + "/70,000", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Polygons: " + SelectedAvatarStats.polyCount + "/70,000", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.SkinnedMeshCount));
-                           GUILayout.Label(new GUIContent("Skinned meshes: " + SelectedAvatarStats.skinnedMeshCount + "/16", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Skinned meshes: " + SelectedAvatarStats.skinnedMeshCount + "/16", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.MaterialCount));
-                           GUILayout.Label(new GUIContent("Material slots: " + SelectedAvatarStats.materialCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Material slots: " + SelectedAvatarStats.materialCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysBoneTransformCount));
                            int physBoneTransforms = SelectedAvatarStats.physBone?.transformCount ?? 0;
-                           GUILayout.Label(new GUIContent("PhysBone transforms: " + physBoneTransforms + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("PhysBone transforms: " + physBoneTransforms + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysBoneCollisionCheckCount));
                            int physBoneCollisionChecks = SelectedAvatarStats.physBone?.collisionCheckCount ?? 0;
-                           GUILayout.Label(new GUIContent("PhysBone collision checks: " + physBoneCollisionChecks + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("PhysBone collision checks: " + physBoneCollisionChecks + "/256", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.AnimatorCount));
-                           GUILayout.Label(new GUIContent("Animators: " + SelectedAvatarStats.animatorCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Animators: " + SelectedAvatarStats.animatorCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.LightCount));
-                           GUILayout.Label(new GUIContent("Lights: " + SelectedAvatarStats.lightCount + "/1", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Lights: " + SelectedAvatarStats.lightCount + "/1", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ParticleTotalCount));
-                           GUILayout.Label(new GUIContent("Total max particles: " + SelectedAvatarStats.particleTotalCount + "/2,500", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Total max particles: " + SelectedAvatarStats.particleTotalCount + "/2,500", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ParticleTrailsEnabled));
-                           GUILayout.Label(new GUIContent("Particle trails: " + SelectedAvatarStats.particleTrailsEnabled + "/True", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Particle trails: " + SelectedAvatarStats.particleTrailsEnabled + "/True", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.TrailRendererCount));
-                           GUILayout.Label(new GUIContent("Trail renderers: " + SelectedAvatarStats.trailRendererCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Trail renderers: " + SelectedAvatarStats.trailRendererCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ClothMaxVertices));
-                           GUILayout.Label(new GUIContent("Cloth max vertices: " + SelectedAvatarStats.clothMaxVertices + "/200", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Cloth max vertices: " + SelectedAvatarStats.clothMaxVertices + "/200", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysicsRigidbodyCount));
-                           GUILayout.Label(new GUIContent("Rigidbodies: " + SelectedAvatarStats.physicsRigidbodyCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Rigidbodies: " + SelectedAvatarStats.physicsRigidbodyCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ConstraintsCount));
-                           GUILayout.Label(new GUIContent("Constraints: " + SelectedAvatarStats.constraintsCount + "/15", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Constraints: " + SelectedAvatarStats.constraintsCount + "/15", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                     }
                     
@@ -403,75 +407,75 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.TextureMegabytes));
                            float textureSize = SelectedAvatarStats.textureMegabytes ?? 0;
-                           GUILayout.Label(new GUIContent("Texture memory: " + textureSize.ToString("##0.00") + "MB", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Texture memory: " + textureSize.ToString("##0.00") + "MB", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.AABB));
                            Vector3 bounds = SelectedAvatarStats.aabb?.max ?? Vector3.zero;
-                           GUILayout.Label(new GUIContent("Bounds: " + bounds + "/(5.0, 6.0, 5.0)", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Bounds: " + bounds + "/(5.0, 6.0, 5.0)", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.MeshCount));
-                           GUILayout.Label(new GUIContent("Basic meshes: " + SelectedAvatarStats.meshCount + "/24", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Basic meshes: " + SelectedAvatarStats.meshCount + "/24", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysBoneComponentCount));
                            int physBoneComponentCount = SelectedAvatarStats.physBone?.componentCount ?? 0;
-                           GUILayout.Label(new GUIContent("PhysBone Components: " + physBoneComponentCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("PhysBone Components: " + physBoneComponentCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysBoneColliderCount));
                            int physBoneColliderCount = SelectedAvatarStats.physBone?.colliderCount ?? 0;
-                           GUILayout.Label(new GUIContent("PhysBone colliders: " + physBoneColliderCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("PhysBone colliders: " + physBoneColliderCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ContactCount));
-                           GUILayout.Label(new GUIContent("Contact count: " + SelectedAvatarStats.contactCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Contact count: " + SelectedAvatarStats.contactCount + "/32", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.BoneCount));
-                           GUILayout.Label(new GUIContent("Bones: " + SelectedAvatarStats.boneCount + "/400", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Bones: " + SelectedAvatarStats.boneCount + "/400", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ParticleSystemCount));
-                           GUILayout.Label(new GUIContent("Particle systems: " + SelectedAvatarStats.lightCount + "/16", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Particle systems: " + SelectedAvatarStats.lightCount + "/16", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ParticleMaxMeshPolyCount));
-                           GUILayout.Label(new GUIContent("Mesh particle polygons: " + SelectedAvatarStats.particleMaxMeshPolyCount + "/5000", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Mesh particle polygons: " + SelectedAvatarStats.particleMaxMeshPolyCount + "/5000", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ParticleCollisionEnabled));
-                           GUILayout.Label(new GUIContent("Particle collisions: " + SelectedAvatarStats.particleCollisionEnabled + "/True", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Particle collisions: " + SelectedAvatarStats.particleCollisionEnabled + "/True", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.ClothCount));
-                           GUILayout.Label(new GUIContent("Cloth meshes: " + SelectedAvatarStats.clothCount + "/1", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Cloth meshes: " + SelectedAvatarStats.clothCount + "/1", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.PhysicsColliderCount));
-                           GUILayout.Label(new GUIContent("Collider count: " + SelectedAvatarStats.physicsColliderCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Collider count: " + SelectedAvatarStats.physicsColliderCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                        using (new GUILayout.HorizontalScope())
                        {
                            performanceIcon = GetPerformanceIcon(SelectedAvatarStats.GetPerformanceRatingForCategory(AvatarPerformanceCategory.AudioSourceCount));
-                           GUILayout.Label(new GUIContent("Rigidbodies: " + SelectedAvatarStats.audioSourceCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(Screen.width / 2 - 5));
+                           GUILayout.Label(new GUIContent("Rigidbodies: " + SelectedAvatarStats.audioSourceCount + "/8", performanceIcon), EditorStyles.boldLabel, GUILayout.Height(20), GUILayout.MaxWidth(ScaledWidth / 2 - 5));
                        }
                     }
                 }
                 EditorGUIUtility.SetIconSize(Vector2.zero);
-                if (GUILayout.Button(new GUIContent("Open Documentation", "https://creators.vrchat.com/avatars/avatar-performance-ranking-system/"), EditorStyles.miniButtonMid, GUILayout.Width(Screen.width), GUILayout.Height(20)))
+                if (GUILayout.Button(new GUIContent("Open Documentation", "https://creators.vrchat.com/avatars/avatar-performance-ranking-system/"), EditorStyles.miniButtonMid, GUILayout.Width(ScaledWidth), GUILayout.Height(20)))
                 {
                     Application.OpenURL("https://creators.vrchat.com/avatars/avatar-performance-ranking-system/");
                 }
@@ -480,20 +484,20 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
 
         private void DrawSocialButtons()
         {
-            GUILayout.BeginArea(new Rect(0, Screen.height - 40f, Screen.width, 60f));
+            GUILayout.BeginArea(new Rect(0, ScaledHeight - 40f, ScaledWidth, 60f));
             using (new GUILayout.HorizontalScope())
             {
                 GUI.color = Color.white;
                 GUI.backgroundColor = Color.white;
                 
                 GUI.backgroundColor = new Color(0.4509804f, 0.5411765f, 0.8588236f, 1f);
-                if (GUILayout.Button(new GUIContent(discordLogo, "Discord"), EditorStyles.miniButtonMid, GUILayout.Width(Screen.width / 4), GUILayout.Height(60))) Application.OpenURL("https://discord.gg/lpd");
+                if (GUILayout.Button(new GUIContent(discordLogo, "Discord"), EditorStyles.miniButtonMid, GUILayout.Width(ScaledWidth / 4), GUILayout.Height(60))) Application.OpenURL("https://discord.gg/lpd");
                 GUI.backgroundColor = new Color(0.1137255f, .6313726f, 0.9490196f, 1f);
-                if (GUILayout.Button(new GUIContent(twitterLogo, "Twitter"), EditorStyles.miniButtonMid, GUILayout.Width(Screen.width / 4), GUILayout.Height(60))) Application.OpenURL("https://twitter.com/LPD_vrchat");
+                if (GUILayout.Button(new GUIContent(twitterLogo, "Twitter"), EditorStyles.miniButtonMid, GUILayout.Width(ScaledWidth / 4), GUILayout.Height(60))) Application.OpenURL("https://twitter.com/LPD_vrchat");
                 GUI.backgroundColor = new Color(0.8039216f, 0.1254902f, 0.1215686f, 1f);
-                if (GUILayout.Button(new GUIContent(youtubeLogo, "Youtube"), EditorStyles.miniButtonMid, GUILayout.Width(Screen.width / 4), GUILayout.Height(60))) Application.OpenURL("https://www.youtube.com/c/LoliPoliceDepartment");
+                if (GUILayout.Button(new GUIContent(youtubeLogo, "Youtube"), EditorStyles.miniButtonMid, GUILayout.Width(ScaledWidth / 4), GUILayout.Height(60))) Application.OpenURL("https://www.youtube.com/c/LoliPoliceDepartment");
                 GUI.backgroundColor = new Color(1f, 0.3137255f, 0.3137255f, 1f);
-                if (GUILayout.Button(new GUIContent(kofiLogo, "Ko-fi"), EditorStyles.miniButtonMid, GUILayout.Width(Screen.width / 4), GUILayout.Height(60))) Application.OpenURL("https://ko-fi.com/lolipolicedepartment");
+                if (GUILayout.Button(new GUIContent(kofiLogo, "Ko-fi"), EditorStyles.miniButtonMid, GUILayout.Width(ScaledWidth / 4), GUILayout.Height(60))) Application.OpenURL("https://ko-fi.com/lolipolicedepartment");
             }
             GUILayout.EndArea();
         }

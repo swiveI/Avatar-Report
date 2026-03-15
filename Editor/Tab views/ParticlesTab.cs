@@ -123,7 +123,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             
             //draw the treeview
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (235 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (235 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             particleTreeHeader.ResizeToFit();
             particleTree.OnGUI(rect);
