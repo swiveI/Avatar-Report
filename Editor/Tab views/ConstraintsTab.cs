@@ -108,7 +108,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             GUILayout.Space(5f);
             
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (230 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (230 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             constraintTree.OnGUI(rect);
             EditorGUILayout.EndVertical();

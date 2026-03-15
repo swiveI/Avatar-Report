@@ -144,20 +144,20 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
 
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("Total Animation Layers: " + totalLayers, "Animation layers get more expensive the more you have."), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("Total Animation States: " + totalStates), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("Total Animation Layers: " + totalLayers, "Animation layers get more expensive the more you have."), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("Total Animation States: " + totalStates), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
 
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("Total Animation Clips: " + totalClips, "This is calculated as unique clips per layer so may be slightly inaccurate"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("Total StateBehaviours: " + totalBehaviours), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("Total Animation Clips: " + totalClips, "This is calculated as unique clips per layer so may be slightly inaccurate"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("Total StateBehaviours: " + totalBehaviours), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
 
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(new GUIContent("Total Any State Transitions: " + totalAnyStateTransitions, "These can get very expensive the more states you have"), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
-                    GUILayout.Label(new GUIContent("Total Animator Parameters: " + totalParameters), EditorStyles.boldLabel, GUILayout.Width(Screen.width / 2));
+                    GUILayout.Label(new GUIContent("Total Any State Transitions: " + totalAnyStateTransitions, "These can get very expensive the more states you have"), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
+                    GUILayout.Label(new GUIContent("Total Animator Parameters: " + totalParameters), EditorStyles.boldLabel, GUILayout.Width(AvatarBuildReportUtility.ScaledWidth / 2));
                 }
             }
 
@@ -238,7 +238,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
         {
             //draw the treeview
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (275 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (275 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             animationTreeHeader.ResizeToFit();
             animationTree.OnGUI(rect);

@@ -78,13 +78,13 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                 CreateMaterialEditors(previewObject);
             }
             
-            float materilOffset = ((Screen.height - GUILayoutUtility.GetLastRect().y) - (240 + (Screen.width / 4)))  - offset;
+            float materilOffset = ((AvatarBuildReportUtility.ScaledHeight - GUILayoutUtility.GetLastRect().y) - (240 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - offset;
             using (var scrollview = new GUILayout.ScrollViewScope(matScrollPos, GUILayout.Height(materilOffset)))
             {
                 matScrollPos = scrollview.scrollPosition;
                 GUILayout.BeginHorizontal();
                 int rows = 1;
-                float previewSize = Screen.width / 3 - 21f;
+                float previewSize = AvatarBuildReportUtility.ScaledWidth / 3 - 21f;
                 
                 GUIStyle pingObjButton = new GUIStyle("minibutton");
                 pingObjButton.alignment = TextAnchor.MiddleCenter;

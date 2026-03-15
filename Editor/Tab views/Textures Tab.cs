@@ -84,7 +84,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
                 GUILayout.Label("Texture VRAM usage: " + AvatarBuildReportUtility.FormatSize(totalVRamUsage), EditorStyles.boldLabel);
             }
             
-            float textureOffset = ((Screen.height - GUILayoutUtility.GetLastRect().y) - (227 + (Screen.width / 4)))  - offset;
+            float textureOffset = ((AvatarBuildReportUtility.ScaledHeight - GUILayoutUtility.GetLastRect().y) - (227 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - offset;
             using (var scrollview = new GUILayout.ScrollViewScope(scrollPos, GUILayout.Height(textureOffset)))
             {
                 scrollPos = scrollview.scrollPosition;
@@ -109,13 +109,13 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
 
         private void DrawTextureButton(TextureInfo info)
         {
-            float previewSize = Screen.width /3 - 20f;
-            float optionsSize = (Screen.width /3) * 2 - 25f;
+            float previewSize = AvatarBuildReportUtility.ScaledWidth /3 - 20f;
+            float optionsSize = (AvatarBuildReportUtility.ScaledWidth /3) * 2 - 25f;
 
             //font style
             GUIStyle textStyle = new GUIStyle(EditorStyles.boldLabel);
             textStyle.alignment = TextAnchor.MiddleCenter;
-            textStyle.fontSize = Screen.width / 35;
+            textStyle.fontSize = (int)(AvatarBuildReportUtility.ScaledWidth / 35);
             textStyle.wordWrap = false;
             textStyle.clipping = TextClipping.Clip;
             
@@ -236,7 +236,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
         private void DrawMaterialsUsingTexture(TextureInfo info, GUIStyle textStyle)
         {
             GUI.backgroundColor = new Color(.5f, .5f, .7f);
-            using (new GUILayout.VerticalScope(new GUIStyle("Box"), GUILayout.Width(Screen.width - 25)))
+            using (new GUILayout.VerticalScope(new GUIStyle("Box"), GUILayout.Width(AvatarBuildReportUtility.ScaledWidth - 25)))
             {
                 textStyle.fontStyle = FontStyle.Bold;
                 textStyle.alignment = TextAnchor.MiddleCenter;

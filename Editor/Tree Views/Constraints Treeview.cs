@@ -96,14 +96,14 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             {
                 Rect rect = args.GetCellRect(0);
                 rect.xMin += 32;
-                rect.width = (Screen.width / 2) - 32f;
+                rect.width = (AvatarBuildReportUtility.ScaledWidth / 2) - 32f;
                 GUI.DrawTexture(new Rect(rect.x, rect.y, 20, 20), item.Icon, ScaleMode.ScaleToFit);
                 rect.x += 20;
                 rect.width -= 20;
                 GUI.Label(rect, item.displayName);
                 
                 rect.x += rect.width;
-                rect.width = Screen.width / 2 - 20f;
+                rect.width = AvatarBuildReportUtility.ScaledWidth / 2 - 20f;
                 ConstraintsTreeItem parent = (ConstraintsTreeItem)args.item.parent;
                 switch (parent.Type)
                 {

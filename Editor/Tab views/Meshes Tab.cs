@@ -121,7 +121,7 @@ namespace LocalPoliceDepartment.Utilities.AvatarReport
             
             //draw the treeview
             Rect rect = EditorGUILayout.BeginVertical();
-            float offset = ((Screen.height - rect.y) - (255 + (Screen.width / 4)))  - baseOffset;
+            float offset = ((AvatarBuildReportUtility.ScaledHeight - rect.y) - (255 + (AvatarBuildReportUtility.ScaledWidth / 4)))  - baseOffset;
             GUILayout.Space(offset);
             meshTreeHeader.ResizeToFit();
             meshTree.OnGUI(rect);
